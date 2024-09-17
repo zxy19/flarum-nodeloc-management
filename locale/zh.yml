@@ -18,7 +18,7 @@ nodeloc-nodeloc-management:
     add-manage-notes: 添加
     select-snippet: 选择片段
     view: 查看
-    warning: "被{u}在{date}记{strike}分"
+    warning: "被 {u} 在 {date} 记 {strike} 分"
     warning-title: 警告 ({count})
     warning-text: |
       用户: {u}
@@ -26,7 +26,10 @@ nodeloc-nodeloc-management:
       日期: {createdAt}
       公开消息: {pb}
       内部消息: {pv}
-    blackhole: "{title}在{date}移入"
+    blackhole: "{title} 在 {date} 移入"
     blackhole-title: 黑洞 ({count})
     notes: 管理员笔记
     add-notes: 添加
+    retagged: "{u} 在 {date} 对 {title}"
+    retagged-tag: " - {tag1} => {tag2}"
+    retagged-title: 重新分配标签 ({count})

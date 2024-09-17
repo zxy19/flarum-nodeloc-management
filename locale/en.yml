@@ -30,3 +30,6 @@ nodeloc-nodeloc-management:
     blackhole-title: Blackhole ({count})
     notes: Manage Notes
     add-notes: Add
+    retagged: "{title} at {date} by {u}"
+    retagged-tag: " - {tag1} => {tag2}"
+    retagged-title: ReAssign Tag ({count})

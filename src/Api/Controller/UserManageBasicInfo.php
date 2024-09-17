@@ -5,6 +5,7 @@ namespace Nodeloc\Management\Api\Controller;
 use Askvortsov\FlarumWarnings\Model\Warning;
 use Flarum\Http\RequestUtil;
 use Flarum\Http\UrlGenerator;
+use Flarum\Post\Post;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\Tags\Tag;
 use Flarum\User\User;
@@ -50,7 +51,7 @@ class UserManageBasicInfo implements RequestHandlerInterface
                 'point' => $mod->strikes,
                 'pb' => strip_tags($mod->public_comment),
                 'pv' => strip_tags($mod->private_comment),
-                'createdAt' => $this->carbonZoneHelper->z($mod->created_at)->toFormattedDateString(),
+                'createdAt' => $this->carbonZoneHelper->z($mod->created_at)->format('Y-m-d H:i:s'),
                 'post' => [$mod->post->discussion_id, $mod->post->number],
                 'user' => $mod->addedByUser->display_name
             ];
@@ -79,7 +80,7 @@ class UserManageBasicInfo implements RequestHandlerInterface
                 $blackholeData[] = [
                     'id' => $discussion->id,
                     'title' => $discussion->title,
-                    'createdAt' => $this->carbonZoneHelper->z($discussion->created_at)->toFormattedDateString()
+                    'createdAt' => $this->carbonZoneHelper->z($discussion->created_at)->format('Y-m-d H:i:s')
                 ];
             }
             $data['blackhole'] = [
@@ -87,6 +88,32 @@ class UserManageBasicInfo implements RequestHandlerInterface
                 'data' => $blackholeData
             ];
         }
+
+
+        $query = Post::join("discussions", "discussions.id", "posts.discussion_id")
+            ->where("posts.type", "discussionTagged")
+            ->where("posts.user_id", "!=", $userId)
+            ->where("discussions.user_id", $userId);
+
+        $count = $query->count();
+        $tagged = $query->orderBy("posts.created_at", "desc")->limit(10)->get();
+        $taggedData = [];
+        if ($tagged) {
+            foreach ($tagged as $t) {
+                $taggedData[] = [
+                    'id' => $t->discussion_id,
+                    'post_id' => $t->id,
+                    'title' => $t->title,
+                    'content' => $t->content,
+                    'created_at' => $this->carbonZoneHelper->z($t->created_at)->format('Y-m-d H:i:s'),
+                    'user' => $t->user->display_name,
+                ];
+            }
+        }
+        $data['retagged'] = [
+            'data' => $taggedData,
+            'total' => $count,
+        ];
 
         return new JsonResponse($data);
     }

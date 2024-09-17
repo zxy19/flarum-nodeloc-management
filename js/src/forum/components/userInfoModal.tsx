@@ -6,6 +6,7 @@ import Link from 'flarum/common/components/Link';
 import textModal from './textModal';
 import User from 'flarum/common/models/User';
 import Button from 'flarum/common/components/Button';
+import type Tag from '@flarum-tags/common/models/Tag';
 type Mod = {
     id: number,
     point: number,
@@ -31,6 +32,16 @@ export default class userInfoModal extends Modal<{
                 createdAt: string
             }[]
         },
+        retagged: {
+            count: number, data: {
+                id: number,
+                post_id: number,
+                title: string,
+                content: number[][],
+                created_at: string,
+                user: string,
+            }[]
+        }
         nl: number, point: number
     };
     className(): string { return 'Modal Modal--large'; }
@@ -99,6 +110,29 @@ export default class userInfoModal extends Modal<{
                                 {app.translator.trans('nodeloc-nodeloc-management.forum.blackhole', {
                                     date: blackhole.createdAt,
                                     title: blackhole.title
+                                })}
+                            </Link>
+                        </div>
+                    }))
+                }
+            </div>
+            <div className='retagged'>
+                <h2>{app.translator.trans("nodeloc-nodeloc-management.forum.retagged-title", { count: this.userData?.retagged.count })}</h2>
+                {
+                    this.userData?.retagged.data.map((retagged => {
+                        const tagChanges = retagged.content;
+                        const beforeTag = tagChanges[0].map(tagId => app.store.getById<Tag>('tags', tagId + ""));
+                        const afterTag = tagChanges[1].map(tagId => app.store.getById<Tag>('tags', tagId + ""));
+                        return <div className='retaggedText'>
+                            <Link href={app.route('discussion.near', { id: retagged.id, near: retagged.post_id })}>
+                                {app.translator.trans('nodeloc-nodeloc-management.forum.retagged', {
+                                    date: retagged.created_at,
+                                    title: retagged.title,
+                                    u: retagged.user,
+                                })}<br />
+                                {app.translator.trans('nodeloc-nodeloc-management.forum.retagged-tag', {
+                                    tag1: beforeTag.map(tag => tag && tag.name()).join(', '),
+                                    tag2: afterTag.map(tag => tag && tag.name()).join(', ')
                                 })}
                             </Link>
                         </div>
