@@ -22,7 +22,7 @@ export default class adminPage extends ExtensionPage {
         super.oninit(vnode);
         this.snippets = this.setting("nodeloc_management.snippet");
         this.blackholeId = this.setting("nodeloc_management.blackholeId");
-        const tmp = JSON.parse(this.snippets());
+        const tmp = JSON.parse(this.snippets()||"{}");
         Object.keys(tmp).forEach(key => {
             this.snippetsData.push({ name: key, data: tmp[key] })
         });
