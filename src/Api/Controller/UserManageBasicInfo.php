@@ -94,7 +94,7 @@ class UserManageBasicInfo implements RequestHandlerInterface
             ->where("posts.type", "discussionTagged")
             ->where("posts.user_id", "!=", $userId)
             ->where("discussions.user_id", $userId)
-            ->select("posts.*");
+            ->select(["posts.*", "discussions.title"]);
 
         $count = $query->count();
         $tagged = $query->orderBy("posts.created_at", "desc")->limit(10)->get();
