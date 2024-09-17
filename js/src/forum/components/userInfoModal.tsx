@@ -84,7 +84,7 @@ export default class userInfoModal extends Modal<{
                             {app.translator.trans('nodeloc-nodeloc-management.forum.warning', {
                                 u: mod.user,
                                 date: mod.createdAt,
-                                points: mod.point
+                                points: mod.point || 0
                             })}
                         </div>
                     })
@@ -119,10 +119,10 @@ export default class userInfoModal extends Modal<{
     }
 
 
-    showModCb(mod: any) {
+    showModCb(mod: Mod) {
         return (() => {
             app.modal.show(textModal, {
-                text: app.translator.trans("nodeloc-nodeloc-management.forum.warning-text", Object.assign(mod, { u: mod.user })) + "",
+                text: app.translator.trans("nodeloc-nodeloc-management.forum.warning-text", Object.assign({ u: mod.user }, mod)),
                 buttonUrl: app.route("discussion.near", { id: mod.post[0], near: mod.post[1] })
             })
         }).bind(this)
