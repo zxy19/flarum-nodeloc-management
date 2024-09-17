@@ -122,7 +122,7 @@ export default class userInfoModal extends Modal<{
     showModCb(mod: Mod) {
         return (() => {
             app.modal.show(textModal, {
-                text: app.translator.trans("nodeloc-nodeloc-management.forum.warning-text", Object.assign({ u: mod.user }, mod)),
+                text: app.translator.trans("nodeloc-nodeloc-management.forum.warning-text", Object.assign(mod, { u: mod.user, user: undefined })),
                 buttonUrl: app.route("discussion.near", { id: mod.post[0], near: mod.post[1] })
             })
         }).bind(this)
