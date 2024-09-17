@@ -84,7 +84,7 @@ export default class userInfoModal extends Modal<{
                             {app.translator.trans('nodeloc-nodeloc-management.forum.warning', {
                                 u: mod.user,
                                 date: mod.createdAt,
-                                points: mod.point || 0
+                                strike: mod.point || 0
                             })}
                         </div>
                     })
