@@ -112,7 +112,7 @@ class UserManageBasicInfo implements RequestHandlerInterface
         }
         $data['retagged'] = [
             'data' => $taggedData,
-            'total' => $count,
+            'count' => $count,
         ];
 
         return new JsonResponse($data);
