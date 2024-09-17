@@ -27,11 +27,11 @@
     "extra": {
         "flarum-extension": {
             "title": "Nodeloc Management",
-            "category": "",
+            "category": "feature",
             "icon": {
-                "name": "",
-                "color": "",
-                "backgroundColor": ""
+                "name": "fas fa-hammer",
+                "color": "#fff",
+                "backgroundColor": "#000"
             }
         },
         "flarum-cli": {
