@@ -51,10 +51,10 @@ export default class adminPage extends ExtensionPage {
                                 this.snippetsData[index].name = (e.target as HTMLInputElement).value;
                                 this.storeSetting()
                             }).bind(this)} /></td>
-                            <td><input className="FormControl" type="text" value={item.data} onchange={((e: InputEvent) => {
+                            <td><textarea className="FormControl" type="text" value={item.data} onchange={((e: InputEvent) => {
                                 this.snippetsData[index].data = (e.target as HTMLInputElement).value;
                                 this.storeSetting()
-                            }).bind(this)} /></td>
+                            }).bind(this)}>{item.data}</textarea></td>
                             <td>
                                 <Button onclick={(() => {
                                     if (confirm(_trans("confirm")))
