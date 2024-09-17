@@ -1,0 +1,32 @@
+nodeloc-nodeloc-management:
+  admin:
+    snippet: 内容片段
+    snippet_key: 键
+    snippet_content: 内容
+    can_use_management: 可以使用管理功能
+    confirm: 确定删除?
+    addRow: 添加一行
+    blackhole: 黑洞标签
+  forum:
+    manage: 管理
+    snippet: 
+      title: 片段
+      key: 键
+      select_snippet: 选择片段
+      insert: 插入
+    manage-notes: 笔记
+    add-manage-notes: 添加
+    select-snippet: 选择片段
+    view: 查看
+    warning: "被{u}在{date}记{strike}分"
+    warning-title: 警告 ({count})
+    warning-text: |
+      用户: {u}
+      分数: {point}
+      日期: {createdAt}
+      公开消息: {pb}
+      内部消息: {pv}
+    blackhole: "{title}在{date}移入"
+    blackhole-title: 黑洞 ({count})
+    notes: 管理员笔记
+    add-notes: 添加

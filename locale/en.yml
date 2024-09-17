@@ -1,0 +1,32 @@
+nodeloc-nodeloc-management:
+  admin:
+    snippet: Content Snippet
+    snippet_key: Snippet Key
+    snippet_content: Snippet Content
+    can_use_management: Can use management
+    confirm: Confirm to delete?
+    addRow: Add Row
+    blackhole: Blackhole Tag
+  forum:
+    manage: Management
+    snippet: 
+      title: Snippet
+      key: Key
+      select_snippet: Select Snippet
+      insert: Insert
+    manage-notes: Notes
+    add-manage-notes: Add
+    select-snippet: Select Snippet
+    view: View
+    warning: "strikes {strike} by {u} at {date} "
+    warning-title: Warning ({count})
+    warning-text: |
+      create: {u}
+      strike: {point}
+      date: {createdAt}
+      public msg: {pb}
+      private msg: {pv}
+    blackhole: "{title} at {date}"
+    blackhole-title: Blackhole ({count})
+    notes: Manage Notes
+    add-notes: Add
