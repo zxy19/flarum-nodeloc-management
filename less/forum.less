@@ -3,13 +3,30 @@
     cursor: pointer;
 }
 
-.autoWrap{
+.autoWrap {
     width: 100%;
     white-space: pre-wrap;
 }
-.manageNotes{
-    .note-from{
+
+.manageNotes {
+    .note-from {
         font-weight: bold;
         text-decoration: underline;
+    }
+}
+
+@media (max-width: @screen-tablet) {
+    .item-manage-snippet {
+        z-index: 1000000;
+        left: 40px;
+        i {
+            font-size: 17px;
+        }
+    }
+}
+
+.Composer.minimized{
+    .item-manage-snippet {
+        display: none;
     }
 }

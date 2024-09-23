@@ -54,7 +54,7 @@ app.initializers.add('nodeloc/nodeloc-management', () => {
           app.modal.show(previewModal, {}, true);
         },
       }),
-      50
+      30
     );
   });
 });
